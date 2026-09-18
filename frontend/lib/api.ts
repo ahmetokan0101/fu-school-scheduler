@@ -1,7 +1,18 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api';
+function getBaseUrl(): string {
+  let url = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api').trim();
+  // Strip all trailing slashes
+  url = url.replace(/\/+$/, '');
+  // If user provided root URL without /api, append /api
+  if (!url.endsWith('/api')) {
+    url = `${url}/api`;
+  }
+  return url;
+}
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const baseUrl = getBaseUrl();
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  const res = await fetch(`${baseUrl}${cleanPath}`, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   });
