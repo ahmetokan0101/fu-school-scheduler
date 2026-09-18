@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FAFAFA;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --accent: #F59E0B;
+  --accent-hover: #D97706;
+  --danger: #EF4444;
+  --success: #10B981;
+}
+
+body {
+  color: var(--text-primary);
+  background: var(--bg);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm 12mm;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10.5pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  aside, nav, button, .no-print {
+    display: none !important;
+  }
+
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-page {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .print-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  table {
+    page-break-inside: avoid;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1 !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
+
+@layer utilities {
+  .font-dm-mono {
+    font-family: 'DM Mono', ui-monospace, monospace;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
