@@ -137,13 +137,16 @@ export default function CoursesPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Ders Atamaları</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Ders Atamaları</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Öğretmen, şube ve haftalık ders saati eşleşmeleri</p>
+        </div>
         <button
           onClick={openCreate}
-          className="bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+          className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-center shadow-xs"
         >
-          Yeni Atama Ekle
+          + Yeni Atama Ekle
         </button>
       </div>
 
@@ -156,8 +159,8 @@ export default function CoursesPage() {
       {loading ? (
         <div className="text-slate-400 py-12 text-center text-sm">Yükleniyor...</div>
       ) : (
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-          <table className="w-full border-collapse">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table className="w-full border-collapse min-w-[560px] sm:min-w-0">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Ders</th>
@@ -207,7 +210,7 @@ export default function CoursesPage() {
       )}
 
       {modalOpen && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md border border-slate-200">
             <h2 className="text-base font-semibold text-slate-900 mb-5">
               {editing ? 'Ders Atamasını Düzenle' : 'Yeni Ders Ataması'}

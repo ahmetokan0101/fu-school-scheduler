@@ -98,35 +98,35 @@ export default function SchedulePage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6 no-print">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 no-print">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Haftalık Ders Programı</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Haftalık Ders Programı</h1>
           <p className="text-xs text-slate-500 mt-1">7 derslik blok ders düzeni ve çakışmasız haftalık dağıtım</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {schedule && (
             <button
               onClick={() => window.print()}
-              className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2.5 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-sm active:scale-95"
+              className="flex-1 sm:flex-none justify-center bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all shadow-xs active:scale-95"
             >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
               </svg>
-              <span>Yazdır / PDF İndir</span>
+              <span>Yazdır / PDF</span>
             </button>
           )}
           <button
             onClick={handleGenerate}
             disabled={loading}
-            className="bg-amber-500 hover:bg-amber-600 text-slate-950 px-5 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-50 flex items-center gap-2 transition-all shadow-sm active:scale-95"
+            className="flex-1 sm:flex-none justify-center bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-2.5 rounded-lg text-xs sm:text-sm font-semibold disabled:opacity-50 flex items-center gap-2 transition-all shadow-xs active:scale-95"
           >
             {loading && (
-              <svg className="animate-spin h-4 w-4 text-slate-950" viewBox="0 0 24 24" fill="none">
+              <svg className="animate-spin h-4 w-4 text-slate-950 shrink-0" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
               </svg>
             )}
-            {loading ? 'Program Oluşturuluyor...' : 'Ders Programı Oluştur'}
+            {loading ? 'Dağıtılıyor...' : 'Program Oluştur'}
           </button>
         </div>
       </div>
@@ -155,11 +155,11 @@ export default function SchedulePage() {
       ) : (
         <div>
           {/* Controls Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-5 no-print">
-            <div className="flex rounded-lg overflow-hidden border border-slate-200 bg-slate-100 p-0.5 gap-0.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 no-print">
+            <div className="grid grid-cols-2 sm:flex rounded-lg overflow-hidden border border-slate-200 bg-slate-100 p-0.5 gap-0.5 w-full sm:w-auto">
               <button
                 onClick={() => setViewMode('class')}
-                className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                className={`py-2 px-3 sm:px-4 sm:py-1.5 text-xs font-semibold rounded-md transition-all text-center ${
                   viewMode === 'class'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-500 hover:text-slate-800'
@@ -169,7 +169,7 @@ export default function SchedulePage() {
               </button>
               <button
                 onClick={() => setViewMode('teacher')}
-                className={`px-4 py-1.5 text-xs font-semibold rounded-md transition-all ${
+                className={`py-2 px-3 sm:px-4 sm:py-1.5 text-xs font-semibold rounded-md transition-all text-center ${
                   viewMode === 'teacher'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-500 hover:text-slate-800'
@@ -179,14 +179,14 @@ export default function SchedulePage() {
               </button>
             </div>
 
-            <div className="flex items-center gap-2">
-              <label className="text-xs font-medium text-slate-500">Filtrele:</label>
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <label className="text-xs font-medium text-slate-500 shrink-0">Filtrele:</label>
               <select
                 value={selectedId}
                 onChange={(e) => handleSelectId(e.target.value)}
-                className="border border-slate-200 rounded-lg px-3 py-1.5 text-xs font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent shadow-sm"
+                className="w-full sm:w-auto border border-slate-200 rounded-lg px-3 py-2 sm:py-1.5 text-xs font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent shadow-xs"
               >
-                <option value="">{viewMode === 'class' ? 'Tüm Sınıflar (Toplu Baskı)' : 'Tüm Öğretmenler (Toplu Baskı)'}</option>
+                <option value="">{viewMode === 'class' ? 'Tüm Sınıflar (Toplu)' : 'Tüm Öğretmenler (Toplu)'}</option>
                 {dropdownItems.map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.name}

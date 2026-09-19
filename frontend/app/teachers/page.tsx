@@ -112,13 +112,16 @@ export default function TeachersPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Öğretmenler</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">Öğretmenler</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Öğretmen listesi, haftalık müsaitlik ve izinli günler</p>
+        </div>
         <button
           onClick={openCreate}
-          className="bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-2 rounded-md text-sm font-semibold transition-colors"
+          className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-2 rounded-lg text-sm font-semibold transition-colors text-center shadow-xs"
         >
-          Yeni Öğretmen Ekle
+          + Yeni Öğretmen Ekle
         </button>
       </div>
 
@@ -131,8 +134,8 @@ export default function TeachersPage() {
       {loading ? (
         <div className="text-slate-400 py-12 text-center text-sm">Yükleniyor...</div>
       ) : (
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-          <table className="w-full border-collapse">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-x-auto">
+          <table className="w-full border-collapse min-w-[500px] sm:min-w-0">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Öğretmen Adı</th>
