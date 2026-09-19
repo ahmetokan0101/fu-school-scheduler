@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="tr">
       <body className="min-h-screen antialiased" style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
         <Sidebar />
-        <main className="pt-16 md:pt-8 p-3 sm:p-6 md:p-8 md:ml-[240px] min-h-screen max-w-7xl mx-auto transition-all">{children}</main>
+        <main className="pt-16 md:pt-8 p-4 sm:p-6 md:p-8 md:ml-[240px] min-h-screen w-full md:w-[calc(100%-240px)] transition-all">{children}</main>
       </body>
     </html>
   );
